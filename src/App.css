@@ -4,3 +4,7 @@
 .user1, .user2{
  height:100vh;
  }
+.battleField{
+  background-image: url("https://www.ricklohre.com/wp-content/uploads/2018/10/Aerial-Drone-Photography-1-9.jpg");
+  background-position: center;
+}
