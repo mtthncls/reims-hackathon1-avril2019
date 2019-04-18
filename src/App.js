@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import DisplayEggs from "./DisplayEggs";
+import DisplayEggs from "./Components/DisplayEggs";
 import { Container, Row, Col } from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
+import CharacterChoice from './Components/CharacterChoice';
 
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
           IAHitpoints : "20",
           userHitpoints : "20",
           selectedEggs: [],
+          selectedCharacter: []
     }
   }
 
@@ -100,8 +102,20 @@ class App extends Component {
 
       <Container>
         <Row>
-          {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEggs eggsCardSelected={this.eggsCardSelected} key={egg.id} egg={egg} selectedEggs={this.state.selectedEggs} />) 
-            }
+          {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : 
+           this.state.eggsRandomizedFromApi.map(
+           egg => <DisplayEggs key={egg.id} egg={egg} selectedEggs={this.state.selectedEggs} />) 
+          }
+        </Row>
+      </Container>
+
+      <Container>
+        <Row>
+          {this.state.charactersRandomizedFromApi.length === 0 ? <p>loading</p> : 
+           this.state.charactersRandomizedFromApi.map(
+           character => <CharacterChoice key={character.id}
+           character={character} IAName={character} IAHitpoints={this.state.IAHitpoints}/>)
+          }
         </Row>
       </Container>
       </div>
