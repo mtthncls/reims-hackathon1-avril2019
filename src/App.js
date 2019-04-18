@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       eggs: '',
+      selectedEggs: [],
     };
   }
   
@@ -60,11 +61,12 @@ class App extends Component {
   
   
     render() {
+      //console.log(this.state.selectedEggs)
       return (
         <div className="App">
         <Container>
             <Row >
-          {this.state.eggs.length === 0 ? <p>loading</p> : this.state.eggs.map(egg => <DisplayEggs key={egg.id} eggs={egg} />) 
+          {this.state.eggs.length === 0 ? <p>loading</p> : this.state.eggs.map(egg => <DisplayEggs eggsCardSelected={this.eggsCardSelected} key={egg.id} egg={egg} selectedEggs={this.state.selectedEggs} />) 
           }
           </Row>
         </Container>
