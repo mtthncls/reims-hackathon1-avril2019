@@ -1,14 +1,12 @@
 import React from 'react';
-import {Button} from 'reactstrap'
 
-const Ia = ({callCharacter,  IAName}) => {
+const Ia = ({IAName}) => {
     return ( 
         <article>
             <ul>
-                <li>{IAName.One}</li>
+                <li>{IAName[0].name}</li>
+                <li><img src={IAName[0].image} alt={IAName[0].name}></img></li>
             </ul>
-
-        <Button onClick={callCharacter}>Pick a name</Button>
         </article>
      );
 }
