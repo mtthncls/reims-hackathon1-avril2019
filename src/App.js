@@ -16,7 +16,9 @@ class App extends Component {
           IAHitpoints : "20",
           userHitpoints : "20",
           selectedEggs: [],
-          selectedCharacter : [],
+          selectedEggIA : [],
+          isSelectedCharacter : [],
+          isSelectCharacterIA : [],
           isBattlefieldDisplayed: false,
           isCharacterSelected: false
     }
@@ -77,13 +79,13 @@ class App extends Component {
   throwEggsToIA = () => {
     const farminglevel = this.state.eggsRandomizedFromApi[0].farming;
     const hitpoints = this.state.userHitpoints;
-    this.setState({ userHitpoints: hitpoints - farminglevel })
+    this.setState({ IAHitpoints: hitpoints - farminglevel })
   };
 
   throwEggsToUser = () => {
     const farminglevel = this.state.eggsRandomizedFromApi[1].farming;
     const hitpoints = this.state.IAHitpoints;
-    this.setState({ IAHitpoints: hitpoints - farminglevel })
+    this.setState({ userHitpoints: hitpoints - farminglevel })
   };
 
   updateArray = (egg) => {
@@ -101,12 +103,13 @@ class App extends Component {
   };
 
   selectCharacter = (character) => {
-    this.state.selectedEggs.length < 1 && this.setState({ selectedCharacter: [...this.state.selectedCharacter, character] })
-    this.state.selectedCharacter.length === 0 && this.setState({ isCharacterSelected: true })
+    this.state.selectedEggs.length < 1 && this.setState({ isSelectedCharacter: [...this.state.isSelectedCharacter, character] })
+    this.state.isSelectedCharacter.length === 0 && this.setState({ isCharacterSelected: true })
+    !this.state.isCharacterSelected && this.setState({isSelectCharacterIA : this.state.charactersRandomizedFromApi[3]})
   }
 
+
   render() {
-    console.log(this.state.selectedEggs)
     return (
       <div className="App battleField">
 
@@ -121,7 +124,6 @@ class App extends Component {
               </Row>
             </Container>
           }
-
           {!this.state.isBattlefieldDisplayed && <Container>
                     <Row>
                       {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={this.selectEgg} />)
@@ -135,7 +137,7 @@ class App extends Component {
             <Col xs={2}>
               <div className="user1 d-flex align-items-center bg-dark">
                 {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
-                  : <Ia hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.charactersRandomizedFromApi[0]} />} </div></Col>
+                  : <Ia hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} />} </div></Col>
             <Col xs={2}>
               <div >
                 {this.state.selectedEggs.length === 0 ? <p>Wait..</p> : this.state.selectedEggs.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
@@ -143,7 +145,7 @@ class App extends Component {
 
             <Col xs={2}>
               <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
-                : <Ia hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.userHitpoints} IAName={this.state.selectedCharacter[0]} />} </div></Col>
+                : <Ia hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.isSelectCharacterIA} />} </div></Col>
 
           </Row>
         </Container>
