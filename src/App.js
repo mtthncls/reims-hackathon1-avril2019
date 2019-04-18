@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Ia from './Components/Ia';
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state= {
+          hitpoints : 100,
+          characterToPick : "",
+           eggsToPick: [
+              {eggOne : "TunaEgg"},
+              {eggTwo : "TroutEgg"},
+              {eggThree : "LobsterEgg"}
+            ],
+
+      charactersFromApi : [
+      {One : "Vador"},
+      {Two : "Yoda"},
+      {Three : "Luke"},
+      {Four : "Leila"}
+      ]
+    }
+  this.pickCharactersFromApi = this.pickCharactersFromApi.bind(this)
+}
+
+  pickCharactersFromApi=()=>{
+      this.setState({ characterToPick : this.state.charactersFromApi[0]});
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Ia callCharacter={this.pickCharactersFromApi} IAName={this.state.characterToPick}/>
       </div>
     );
   }
