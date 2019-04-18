@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import DisplayEgg from "./DisplayEgg";
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col} from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
+import CharacterChoice from './Components/CharacterChoice';
 
 
 
@@ -15,8 +16,9 @@ class App extends Component {
           IAHitpoints : "20",
           userHitpoints : "20",
           selectedEggs: [],
-          userCharacter : [],
+          selectedCharacter : [],
           isBattlefieldDisplayed: false,
+          isCharacterSelected: false
     }
   }
 
@@ -92,15 +94,42 @@ class App extends Component {
     };
     }
   )};
+
   selectEgg = (egg) => {
     this.state.selectedEggs.length < 3 && this.setState({ selectedEggs: [...this.state.selectedEggs, egg] })
     this.state.selectedEggs.length === 2 && this.setState({ isBattlefieldDisplayed: true })
+  };
+
+  selectCharacter = (character) => {
+    this.state.selectedEggs.length < 1 && this.setState({ selectedCharacter: [...this.state.selectedCharacter, character] })
+    this.state.selectedCharacter.length === 0 && this.setState({ isCharacterSelected: true })
   }
 
   render() {
     console.log(this.state.selectedEggs)
     return (
       <div className="App battleField">
+
+
+      {!this.state.isCharacterSelected && <Container>
+              <Row>
+                {this.state.charactersRandomizedFromApi.length === 0 ? <p>loading</p> : 
+                this.state.charactersRandomizedFromApi.map(
+                character => <CharacterChoice key={character.id}
+                character={character} IAName={character} onSelectCharacter={this.selectCharacter} IAHitpoints={this.state.IAHitpoints}/>)
+                }
+              </Row>
+            </Container>
+          }
+
+          {!this.state.isBattlefieldDisplayed && <Container>
+                    <Row>
+                      {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={this.selectEgg} />)
+                      }
+                    </Row>
+                  </Container>
+                }
+
         {this.state.isBattlefieldDisplayed && <Container fluid>
         <Row>
             <Col xs={2}>
@@ -114,17 +143,13 @@ class App extends Component {
 
             <Col xs={2}>
               <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
-                : <Ia hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.userHitpoints} IAName={this.state.charactersRandomizedFromApi[1]} />} </div></Col>
+                : <Ia hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.userHitpoints} IAName={this.state.selectedCharacter[0]} />} </div></Col>
 
           </Row>
-        </Container>}
+        </Container>
+      }
 
-        {!this.state.isBattlefieldDisplayed && <Container>
-          <Row>
-            {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={this.selectEgg} />)
-            }
-          </Row>
-        </Container>}
+        
       </div>
     );
   }
