@@ -79,6 +79,15 @@ class App extends Component {
     this.setState({IAHitpoints : hitpoints - farminglevel})
   };
 
+  updateArray = (egg) => {
+    this.setState(function (prevState) {
+      return {
+        selectedEggs: this.state.selectedEggs.length === 0 ?
+          [egg] : [...prevState.selectedEggs, egg],
+    };
+    }
+  )};
+
   render() {
     return (
       <div className="App battleField">
@@ -87,9 +96,19 @@ class App extends Component {
           <Col xs={2}>
             <div className="user1 d-flex align-items-center bg-dark"> 
               {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> 
-              : <Ia hitMethod ={() => this.throwEggsToIA()} IAHitpoints = {this.state.IAHitpoints} IAName={this.state.charactersRandomizedFromApi[0]}/>} </div></Col>
+              : <Ia hitMethod ={() => this.throwEggsToIA()} IAHitpoints = {this.state.IAHitpoints} 
+                IAName={this.state.charactersRandomizedFromApi[0]}/>};
 
-          <Col offset={8}/>
+              <Col xs={2}>
+                <div>
+                  {this.state.selectedEggs.map(selectedEgg => <DisplayEggs egg ={selectedEgg}/>)}
+                </div>
+              </Col>
+              
+            </div>
+          </Col>
+
+          <Col offset={6}/>
 
           <Col xs={2}>
             <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> 
@@ -100,7 +119,7 @@ class App extends Component {
 
       <Container>
         <Row>
-          {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEggs eggsCardSelected={this.eggsCardSelected} key={egg.id} egg={egg} selectedEggs={this.state.selectedEggs} />) 
+          {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEggs eggsCardSelected={this.eggsCardSelected} key={egg.id} egg={egg} selectedEggs={this.updateArray} />) 
             }
         </Row>
       </Container>
