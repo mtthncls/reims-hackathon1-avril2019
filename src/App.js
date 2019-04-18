@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DisplayEggs from "./DisplayEggs";
 import { Container, Row, Col } from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
@@ -11,7 +12,8 @@ class App extends Component {
           charactersRandomizedFromApi : [],
           eggsRandomizedFromApi : [],
           IAHitpoints : "20",
-          userHitpoints : "20"
+          userHitpoints : "20",
+          selectedEggs: [],
     }
   }
 
@@ -89,9 +91,15 @@ class App extends Component {
           :  <Ia hitMethod ={() => this.throwEggsToUser()} IAHitpoints = {this.state.userHitpoints} IAName={this.state.charactersRandomizedFromApi[1]}/>} </div></Col>
         </Row>
       </Container>
+      <Container>
+        <Row>
+          {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEggs eggsCardSelected={this.eggsCardSelected} key={egg.id} egg={egg} selectedEggs={this.state.selectedEggs} />) 
+            }
+        </Row>
+      </Container>
       </div>
     );
   }
-}
-
-export default App;
+  }
+  
+  export default App;
