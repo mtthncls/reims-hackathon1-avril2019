@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
 
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super()
-    this.state= {
-          charactersRandomizedFromApi : [],
-          eggsRandomizedFromApi : []
+    this.state = {
+      charactersRandomizedFromApi: [],
+      eggsRandomizedFromApi: []
     }
-}
+  }
 
 
   componentDidMount() {
@@ -22,7 +23,7 @@ class App extends Component {
         // console.log(eggsToRandomize[0].name);
         let eggsToDisplay = this.selectNumberOfDisplay(eggsToRandomize, 30)
         console.log(eggsToDisplay)
-        this.setState({eggsRandomizedFromApi : eggsToDisplay})
+        this.setState({ eggsRandomizedFromApi: eggsToDisplay })
 
       }
       );
@@ -35,7 +36,7 @@ class App extends Component {
         // console.log(charsToRandomize[0].name);
         let charsToDisplay = this.selectNumberOfDisplay(charsToRandomize, 10)
         console.log(charsToDisplay)
-        this.setState({charactersRandomizedFromApi : charsToDisplay})
+        this.setState({ charactersRandomizedFromApi: charsToDisplay })
       }
       );
   };
@@ -64,7 +65,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> : <Ia IAName={this.state.charactersRandomizedFromApi}/>}
+        <div className="battleField">
+          <Container fluid>
+            <Row>
+              <Col xs={2}><div className="user1 d-flex align-items-center bg-dark"> {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> : <Ia IAName={this.state.charactersRandomizedFromApi} />}</div></Col>
+              <Col offset={8}></Col>
+              <Col xs={2}><div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> : <Ia IAName={this.state.charactersRandomizedFromApi} />}</div></Col>
+            </Row>
+          </Container>
+        </div>
       </div>
     );
   }
