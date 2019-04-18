@@ -43,6 +43,7 @@ class App extends Component {
         this.setState({ charactersRandomizedFromApi: charsToDisplay })
       }
       );
+
   };
   randomizeAPIDisplay = (apiResponse) => {
     let currentIndex = apiResponse.length, temporaryValue, randomIndex;
@@ -104,7 +105,7 @@ class App extends Component {
                   {this.state.selectedEggs.map(selectedEgg => <DisplayEggs egg ={selectedEgg}/>)}
                 </div>
               </Col>
-              
+
             </div>
           </Col>
 
