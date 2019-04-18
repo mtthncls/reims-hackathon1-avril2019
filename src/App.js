@@ -98,7 +98,7 @@ class App extends Component {
                   : <Ia hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.charactersRandomizedFromApi[0]} />} </div></Col>
             <Col xs={2}>
               <div className="user1 d-flex align-items-center bg-dark">
-                {this.state.selectedEggs.length === 0 ? <p>Wait..</p> : <p>wai...</p>}  </div></Col>
+                {this.state.selectedEggs.length === 0 ? <p>Wait..</p> : this.state.selectedEggs.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
             <Col offset={4} />
             }
               <Col xs={2}>
@@ -110,7 +110,7 @@ class App extends Component {
 
         <Container>
           <Row>
-            {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg /*eggsCardSelected={this.eggsCardSelected}*/ key={egg.id} egg={egg} onSelectEgg={this.selectEgg} />)
+            {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={this.selectEgg} />)
             }
           </Row>
         </Container>
