@@ -8,7 +8,9 @@ class App extends Component {
     super()
     this.state= {
           charactersRandomizedFromApi : [],
-          eggsRandomizedFromApi : []
+          eggsRandomizedFromApi : [],
+          IAHitpoints : "20",
+          userHitpoints : "20"
     }
 }
 
@@ -61,10 +63,26 @@ class App extends Component {
     return selectedDisplays
   }
 
+  
+  throwEggsToIA = () => {
+      const farminglevel = this.state.eggsRandomizedFromApi[0].farming;
+      const hitpoints = this.state.userHitpoints;
+      this.setState({userHitpoints : hitpoints - farminglevel})
+    }
+
+  throwEggsToUser = () => {
+    const farminglevel = this.state.eggsRandomizedFromApi[1].farming;
+    const hitpoints = this.state.IAHitpoints;
+    this.setState({IAHitpoints : hitpoints - farminglevel})
+  };
+
   render() {
     return (
       <div className="App">
-        {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> : <Ia IAName={this.state.charactersRandomizedFromApi}/>}
+        {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> 
+        :  <Ia hitMethod ={() => this.throwEggsToIA()} IAHitpoints = {this.state.IAHitpoints} IAName={this.state.charactersRandomizedFromApi[0]}/>}
+        {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> 
+        :  <Ia hitMethod ={() => this.throwEggsToUser()} IAHitpoints = {this.state.userHitpoints} IAName={this.state.charactersRandomizedFromApi[1]}/>}
       </div>
     );
   }
