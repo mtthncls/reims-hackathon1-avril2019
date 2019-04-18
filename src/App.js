@@ -3,9 +3,6 @@ import './App.css';
 import Ia from './Components/Ia';
 
 
-
-
-
 class App extends Component {
   constructor(){
     super()
@@ -65,7 +62,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.charactersRandomizedFromApi[0])
     return (
       <div className="App">
         {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p> : <Ia IAName={this.state.charactersRandomizedFromApi}/>}
