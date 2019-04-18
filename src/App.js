@@ -3,7 +3,7 @@ import DisplayEgg from "./DisplayEgg";
 import { Container, Row, Col } from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
-import DisplayWeapons from './Components/DisplayWeapons';
+
 
 
 class App extends Component {
@@ -97,11 +97,11 @@ class App extends Component {
                 {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
                   : <Ia hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.charactersRandomizedFromApi[0]} />} </div></Col>
             <Col xs={2}>
-              <div className="user1 d-flex align-items-center bg-dark">
+              <div >
                 {this.state.selectedEggs.length === 0 ? <p>Wait..</p> : this.state.selectedEggs.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
             <Col offset={4} />
-            }
-              <Col xs={2}>
+
+            <Col xs={2}>
               <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
                 : <Ia hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.userHitpoints} IAName={this.state.charactersRandomizedFromApi[1]} />} </div></Col>
 
