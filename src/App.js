@@ -14,6 +14,7 @@ class App extends Component {
           IAHitpoints : "20",
           userHitpoints : "20",
           selectedEggs: [],
+          userCharacter : [],
     }
   }
 
