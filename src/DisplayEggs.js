@@ -1,17 +1,19 @@
 import React from 'react'
 import "./DisplayEggs.css";
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Card, Button, CardTitle, CardText, Col } from 'reactstrap';
 
-const DisplayEggs = ({image, name, farming}) => {
+const DisplayEggs = ({eggs}) => {
     return (
-        <section className='card'>
-                <Card body inverse color="warning">
-                    <img src={image} alt={name} className ="egg"/>
-                    <CardTitle>Oeuf n°1  {name}</CardTitle>
-                    <CardText>Attack Points: {farming}</CardText>
-                    <Button color="secondary">Attack</Button>
-                </Card>
-        </section>
+        <article className='card'>
+                <Col>
+                    <Card body inverse color="warning">
+                        <img src={eggs.image} alt={eggs.name} className ="egg"/>
+                        <CardTitle className = "eggsTitle">{eggs.name}</CardTitle>
+                        <CardText className = "eggsText">Attack Points: {eggs.farming}</CardText>
+                        <Button color="secondary">Select</Button>
+                    </Card>
+                </Col>
+        </article>
     )
 }
 

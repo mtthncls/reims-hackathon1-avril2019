@@ -3,6 +3,18 @@
 }
 
 .egg{
-    width : 10rem;
-    height : 10rem;
+    width : 8rem;
+    height : 8rem;
+}
+
+.eggsTitle{
+    font-size: 0.7rem;
+}
+
+.eggsText{
+    font-size: 0.7rem;
+}
+
+.Row{
+    margin: 5px;
 }
