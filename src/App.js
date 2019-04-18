@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DisplayEggs from "./DisplayEggs";
-import { Container, Row, Col } from 'reactstrap';
+import DisplayEggs from "./Components/DisplayEggs";
+import { Container, Row, Col, Button } from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
 
@@ -14,6 +14,8 @@ class App extends Component {
           IAHitpoints : "20",
           userHitpoints : "20",
           selectedEggs: [],
+          isCardDisplay: true,
+          isCardDisabled: false,
     }
   }
 
@@ -66,6 +68,15 @@ class App extends Component {
     return selectedDisplays
   }
 
+
+  setCardStatus = () => {
+    this.setState({ isCardDisabled: true })
+  }
+
+  triggerBattlefieldState = () => {
+    this.setState({ isCardDisplay: false })
+    this.setState({ isCardDisabled: false })
+  }
   
   throwEggsToIA = () => {
       const farminglevel = this.state.eggsRandomizedFromApi[0].farming;
@@ -79,10 +90,17 @@ class App extends Component {
     this.setState({IAHitpoints : hitpoints - farminglevel})
   };
 
+
   render() {
     return (
       <div className="App battleField">
-      <Container fluid>
+        {this.state.isCardDisplay && <Container>
+        <Row>
+          {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEggs eggsCardSelected={this.eggsCardSelected} key={egg.id} egg={egg} selectedEggs={this.state.selectedEggs} isCardDisabled={this.state.isCardDisabled} />) 
+            }
+        </Row>
+      </Container>}
+      {!this.state.isCardDisplay && <Container fluid>
         <Row> 
           <Col xs={2}>
             <div className="user1 d-flex align-items-center bg-dark"> 
@@ -96,14 +114,7 @@ class App extends Component {
             : <Ia hitMethod ={() => this.throwEggsToUser()} IAHitpoints = {this.state.userHitpoints} IAName={this.state.charactersRandomizedFromApi[1]}/>} </div></Col>
 
         </Row>
-      </Container>
-
-      <Container>
-        <Row>
-          {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEggs eggsCardSelected={this.eggsCardSelected} key={egg.id} egg={egg} selectedEggs={this.state.selectedEggs} />) 
-            }
-        </Row>
-      </Container>
+      </Container>}
       </div>
     );
   }
