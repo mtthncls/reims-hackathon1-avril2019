@@ -31,6 +31,14 @@
   border-radius: 1rem;
 }
 
+.btnTryAgain{
+  position: absolute;
+  margin-left: -9vh;
+  margin-top: 47vh;
+  
+}
+
+
 .omagad{
   position: relative;
 }
