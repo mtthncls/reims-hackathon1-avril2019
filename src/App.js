@@ -26,7 +26,8 @@ class App extends Component {
         id: "5cac51240d488f0da6151c38",
         image:"https://i.imgur.com/erXJsNE.png",
         name: "Clément Bechetoille",
-      }
+      },
+      displayNoneButton : true,
     }
   }
   componentDidMount() {
@@ -148,7 +149,8 @@ class App extends Component {
                 {this.state.charactersRandomizedFromApi.length === 0 
                   ? <p>Wait</p>
                   : <Ia selectedEggs={this.state.selectedEggs} hitMethod={() => this.throwEggsToIA(this.throwEggsToUser())} 
-                        IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} />} 
+                        IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} 
+                        displayNoneButton = {this.state.displayNoneButton}/>} 
               </div>
             </Col>
 
