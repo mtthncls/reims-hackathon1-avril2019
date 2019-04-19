@@ -84,9 +84,9 @@ class App extends Component {
   };
 
   throwEggsToUser = () => {
-    let farminglevel = this.state.selectedEggs[1].farming;
+    let farminglevel = this.state.selectedEggsIA[0].farming;
     const hitpoints = this.state.userHitpoints;
-    this.setState({ userHitpoints: hitpoints - farminglevel })
+    this.setState({ userHitpoints: hitpoints - farminglevel, selectedEggsIA : this.state.selectedEggsIA.slice(1) })
   };
 
   updateArray = (egg) => {
@@ -127,7 +127,7 @@ class App extends Component {
           </Row>
         </Container>
         }
-        {!this.state.isBattlefieldDisplayed && <Container>
+        {!this.state.areEggsSelected && <Container>
           <Row>
             {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={this.selectEgg} />)
             }
@@ -135,7 +135,7 @@ class App extends Component {
         </Container>
         }
 
-        {this.state.isBattlefieldDisplayed && <Container fluid>
+        {this.state.areEggsSelected && <Container fluid>
           <Row>
             <Col xs={2}>
               <div className="user1 d-flex align-items-center bg-dark">
@@ -143,11 +143,11 @@ class App extends Component {
                   : <Ia hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} />} </div></Col>
             <Col xs={2}>
               <div >
-                {this.state.selectedEggs.length === 0 ? <p>Wait..</p> : this.state.selectedEggs.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
+                {this.state.selectedEggs.length === 0 ? <p>No more Eggs !</p> : this.state.selectedEggs.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
             <Col offset={6} />
             <Col xs={2}>
               <div >
-                {this.state.selectedEggs.length === 0 ? <p>Wait..</p> : this.state.selectedEggsIA.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
+                {this.state.selectedEggsIA.length === 0 ? <p>No more Eggs !</p> : this.state.selectedEggsIA.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
             <Col xs={2}>
               <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
                 : <Ia hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.isSelectCharacterIA} />} </div></Col>
