@@ -21,11 +21,14 @@ class App extends Component {
       isSelectCharacterIA: [],
       isBattlefieldDisplayed: false,
       isCharacterSelected: false,
-      areEggsSelected: false
+      areEggsSelected: false,
+      clementCharacter : {
+        id: "5cac51240d488f0da6151c38",
+        image:"https://quartierlibre.co/sites/default/files/styles/large/public/upload/Wild%20Code%20School_Cle%CC%81ment%20BECHETOILLE.jpg?itok=jFFSpMhx",
+        name: "Clément Bechetoille",
+      }
     }
   }
-
-
   componentDidMount() {
     fetch('http://easteregg.wildcodeschool.fr/api/eggs')
       .then(eggsFromAPI => eggsFromAPI.json())
@@ -45,7 +48,7 @@ class App extends Component {
         this.setState({ charactersRandomizedFromApi: charsToDisplay })
       }
       );
-
+      
   };
   randomizeAPIDisplay = (apiResponse) => {
     let currentIndex = apiResponse.length, temporaryValue, randomIndex;
@@ -74,7 +77,8 @@ class App extends Component {
   throwEggsToIA = () => {
     let farminglevel = this.state.selectedEggs[0].farming;
     const hitpoints = this.state.IAHitpoints;
-    this.setState({ IAHitpoints: hitpoints - farminglevel, selectedEggs : this.state.selectedEggs.slice(1)});
+    this.setState({ IAHitpoints: hitpoints - farminglevel, selectedEggs : this.state.selectedEggs.slice(1) });
+    hitpoints <= 15 && this.setState({isSelectCharacterIA : this.state.clementCharacter})
   };
 
   throwEggsToUser = () => {
@@ -156,7 +160,7 @@ class App extends Component {
                  : <h1 className="endMessage">Dommage {this.state.isSelectedCharacter.name} vous avez perdu !</h1> 
                  : this.state.selectedEggs.length === 0 
                  ? <p className="noMoreEggs">No more Eggs !</p> 
-                 : this.state.selectedEggs.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  
+                 : this.state.selectedEggs.map(egg => <DisplayEgg key={egg.id} egg={egg}/>)}  
               </div>
             </Col>
             
@@ -167,7 +171,7 @@ class App extends Component {
                   ? <p>Nice</p> 
                   : this.state.selectedEggsIA.length === 0 
                   ? <p className="noMoreEggs">No more Eggs !</p> 
-                  : this.state.selectedEggsIA.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
+                  : this.state.selectedEggsIA.map(egg => <DisplayEgg key={egg.id} egg={egg}/>)}  </div></Col>
             
             <Col xs={2}>
               <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 
