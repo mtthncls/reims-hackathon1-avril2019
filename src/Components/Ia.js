@@ -1,7 +1,5 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
-import './UserCard.css';
-
 const Ia = ({hitMethod, IAName, IAHitpoints, selectedEggs}) => {
     return ( 
         <section className='card text-white bg-dark mb-3'>
