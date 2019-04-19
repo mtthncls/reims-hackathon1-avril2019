@@ -77,14 +77,14 @@ class App extends Component {
   
   
   throwEggsToIA = () => {
-    const farminglevel = this.state.eggsRandomizedFromApi[0].farming;
-    const hitpoints = this.state.userHitpoints;
-    this.setState({ IAHitpoints: hitpoints - farminglevel })
+    let farminglevel = this.state.selectedEggs[0].farming;
+    const hitpoints = this.state.IAHitpoints;
+    this.setState({ IAHitpoints: hitpoints - farminglevel, selectedEggs : this.state.selectedEggs.slice(1)})
   };
 
   throwEggsToUser = () => {
-    const farminglevel = this.state.eggsRandomizedFromApi[1].farming;
-    const hitpoints = this.state.IAHitpoints;
+    let farminglevel = this.state.selectedEggs[1].farming;
+    const hitpoints = this.state.userHitpoints;
     this.setState({ userHitpoints: hitpoints - farminglevel })
   };
 
