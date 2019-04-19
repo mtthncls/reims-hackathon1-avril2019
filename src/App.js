@@ -80,7 +80,7 @@ class App extends Component {
   throwEggsToIA = () => {
     let farminglevel = this.state.selectedEggs[0].farming;
     const hitpoints = this.state.IAHitpoints;
-    this.setState({ IAHitpoints: hitpoints - farminglevel, selectedEggs : this.state.selectedEggs.slice(1)})
+    this.setState({ IAHitpoints: hitpoints - farminglevel, selectedEggs : this.state.selectedEggs.slice(1)});
   };
 
   throwEggsToUser = () => {
@@ -100,9 +100,10 @@ class App extends Component {
   };
 
   selectEgg = (egg) => {
-    this.state.selectedEggs.length < 3 && this.setState({ selectedEggs: [...this.state.selectedEggs, egg] })
+    this.state.selectedEggs.length < 3 && this.setState({ selectedEggs: [...this.state.selectedEggs, egg],  eggsRandomizedFromApi : this.state.eggsRandomizedFromApi.slice(1) })
     this.state.selectedEggs.length === 2 && this.setState({ isBattlefieldDisplayed: true, areEggsSelected: true })
-    !this.state.areEggsSelected && this.setState({ selectedEggsIA: [this.state.eggsRandomizedFromApi[6], this.state.eggsRandomizedFromApi[9], this.state.eggsRandomizedFromApi[12]] })
+    !this.state.areEggsSelected && this.setState({ selectedEggsIA: [this.state.eggsRandomizedFromApi[6],
+       this.state.eggsRandomizedFromApi[9], this.state.eggsRandomizedFromApi[12]]})
   };
 
   selectCharacter = (character) => {
@@ -129,7 +130,7 @@ class App extends Component {
         }
         {!this.state.areEggsSelected && <Container>
           <Row>
-            {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={this.selectEgg} />)
+            {this.state.eggsRandomizedFromApi.length === 0 ? <p>loading</p> : this.state.eggsRandomizedFromApi.map(egg =><DisplayEgg key={egg.id} egg={egg} onSelectEgg={this.selectEgg} />)
             }
           </Row>
         </Container>
@@ -143,11 +144,20 @@ class App extends Component {
                   : <Ia selectedEggs={this.state.selectedEggs} hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} />} </div></Col>
             <Col xs={2}>
               <div >
-                {this.state.selectedEggs.length === 0 ? <p>No more Eggs !</p> : this.state.selectedEggs.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
-            <Col offset={6} />
+                { this.state.selectedEggs.length === 0 && this.state.selectedEggsIA.length === 0
+                 ? this.state.userHitpoints < this.state.IAHitpoints 
+                 ? <h1 className="endMessage">Bravo {this.state.isSelectedCharacter.name} vous avez gagné !</h1>
+                 : <h1 className="endMessage">Dommage {this.state.isSelectedCharacter.name} vous avez perdu !</h1> 
+                 : this.state.selectedEggs.length === 0 
+                 ? <p className="noMoreEggs">No more Eggs !</p> : this.state.selectedEggs.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
+            <Col offset={4} />
+
             <Col xs={2}>
-              <div >
-                {this.state.selectedEggsIA.length === 0 ? <p>No more Eggs !</p> : this.state.selectedEggsIA.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
+              <div>{this.state.selectedEggs.length === 0 && this.state.selectedEggsIA.length === 0
+                  ? <p>Nice</p> 
+                  : this.state.selectedEggsIA.length === 0 
+                  ? <p className="noMoreEggs">No more Eggs !</p> 
+                  : this.state.selectedEggsIA.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
             <Col xs={2}>
               <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
                 : <Ia selectedEggs={this.state.selectedEggsIA}hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.isSelectCharacterIA} />} </div></Col>

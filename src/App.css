@@ -8,3 +8,16 @@
   background-image: url("https://www.ricklohre.com/wp-content/uploads/2018/10/Aerial-Drone-Photography-1-9.jpg");
   background-position: center;
 }
+
+.endMessage{
+  color : white;
+  font-size: 5rem;
+}
+
+.noMoreEggs{
+  color: rgb(255, 0, 0);
+  font-size : 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content : center;
+}
