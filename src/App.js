@@ -24,7 +24,7 @@ class App extends Component {
       areEggsSelected: false,
       clementCharacter : {
         id: "5cac51240d488f0da6151c38",
-        image:"https://quartierlibre.co/sites/default/files/styles/large/public/upload/Wild%20Code%20School_Cle%CC%81ment%20BECHETOILLE.jpg?itok=jFFSpMhx",
+        image:"https://i.imgur.com/erXJsNE.png",
         name: "Clément Bechetoille",
       }
     }
@@ -128,7 +128,7 @@ class App extends Component {
           </Row>
         </Container>
         }
-        {!this.state.areEggsSelected && <Container>
+        {!this.state.isBattlefieldDisplayed && this.state.isCharacterSelected && <Container>
           <Row>
             {this.state.eggsRandomizedFromApi.length === 0 
             ? <p>loading</p> 

@@ -10,7 +10,7 @@
 }
 
 .endMessage{
-  color : white;
+  color : black;
   font-size: 5rem;
 }
 
@@ -20,4 +20,8 @@
   display: flex;
   flex-direction: column;
   justify-content : center;
+}
+
+.imgSize{
+  height: 12rem;
 }
