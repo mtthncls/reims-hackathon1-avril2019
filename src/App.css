@@ -8,7 +8,6 @@
   background-image: url("https://www.ricklohre.com/wp-content/uploads/2018/10/Aerial-Drone-Photography-1-9.jpg");
   background-position: center;
 }
-
 .endMessageWin{
   display: table;
   position: relative;
@@ -20,7 +19,8 @@
   border-radius: 1rem;
   animation-duration: 1s;
   animation-name: slidein;
-}
+};
+
 @keyframes slidein {
   from {
     margin-left: 100%;
@@ -30,8 +30,9 @@
   to {
     margin-left: 0%;
     width: 223%;
+  }
 }
-}
+
 
 .endMessageLose{
   display: table;
@@ -56,6 +57,14 @@
     width: 223%;
   }
 }
+
+.btnTryAgain{
+  position: absolute;
+  margin-left: -9vh;
+  margin-top: 47vh;
+  
+}
+
 
 .omagad{
   position: relative;

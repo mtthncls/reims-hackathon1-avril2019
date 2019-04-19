@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DisplayEgg from "./DisplayEgg";
-import { Container, Row, Col} from 'reactstrap';
+import { Container, Row, Col, Button} from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
 import CharacterChoice from './Components/CharacterChoice';
@@ -111,6 +111,16 @@ class App extends Component {
     !this.state.isCharacterSelected && this.setState({ isSelectCharacterIA: this.state.charactersRandomizedFromApi[3] })
   }
 
+  isTryAgainDisplay = () => {
+    this.setState({isBattlefieldDisplayed: false,})
+    this.setState({isCharacterSelected: false,})
+    this.setState({areEggsSelected: false,})
+    this.setState({isSelectedCharacter: []})
+    this.setState({isSelectedCharacterIA: []})
+    this.setState({IAHitpoints: "20",})
+    this.setState({userHitpoints: "20",})
+  }
+
 
   render() {
     return (
@@ -166,11 +176,11 @@ class App extends Component {
               </div>
             </Col>
             
-            <Col offset={4} />
+            <Col offset={4}> {this.state.areEggsSelected === true && this.state.selectedEggs.length === 0 && <Button onClick={() => this.isTryAgainDisplay()} className="btnTryAgain" size="lg" color="warning">Try Again</Button>}</Col>
 
             <Col xs={2}>
               <div className = "omagad">{this.state.selectedEggs.length === 0 && this.state.selectedEggsIA.length === 0
-                  ? <p>Nice</p> 
+                  ? <p></p> 
                   : this.state.selectedEggsIA.length === 0 
                   ? <p className="noMoreEggs"></p> 
                   : this.state.selectedEggsIA.map(egg => <DisplayEgg isBattlefieldDisplayed={this.state.isBattlefieldDisplayed} 
@@ -187,7 +197,7 @@ class App extends Component {
           </Row>
         </Container>
         }
-
+        
 
       </div>
     );
