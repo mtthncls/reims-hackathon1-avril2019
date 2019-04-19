@@ -1,6 +1,6 @@
 .card{
-    width : 12rem;
-    margin-top: 0.5rem;
+    width:13rem;
+    margin: 0.5rem;
 }
 
 .egg{
@@ -18,4 +18,9 @@
 
 .Row{
     margin: 5px;
+}
+
+.life{
+    width: 1rem;
+    margin-bottom: 1rem;
 }
