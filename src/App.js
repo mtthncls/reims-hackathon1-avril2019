@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DisplayEgg from "./DisplayEgg";
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col} from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
 import CharacterChoice from './Components/CharacterChoice';
