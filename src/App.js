@@ -116,7 +116,6 @@ class App extends Component {
     return (
       <div className="App battleField">
 
-
         {!this.state.isCharacterSelected && <Container>
           <Row>
             {this.state.charactersRandomizedFromApi.length === 0 
