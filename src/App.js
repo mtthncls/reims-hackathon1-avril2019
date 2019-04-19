@@ -30,11 +30,8 @@ class App extends Component {
     fetch('http://easteregg.wildcodeschool.fr/api/eggs')
       .then(eggsFromAPI => eggsFromAPI.json())
       .then(eggsData => {
-        // console.log(eggsData[0].name);
         let eggsToRandomize = this.randomizeAPIDisplay(eggsData);
-        // console.log(eggsToRandomize[0].name);
         let eggsToDisplay = this.selectNumberOfDisplay(eggsToRandomize, 30)
-        // console.log(eggsToDisplay)
         this.setState({ eggsRandomizedFromApi: eggsToDisplay })
 
       }
@@ -43,11 +40,8 @@ class App extends Component {
     fetch('http://easteregg.wildcodeschool.fr/api/characters')
       .then(charsFromAPI => charsFromAPI.json())
       .then(charsData => {
-        // console.log(charsData[0].name);
         let charsToRandomize = this.randomizeAPIDisplay(charsData);
-        // console.log(charsToRandomize[0].name);
         let charsToDisplay = this.selectNumberOfDisplay(charsToRandomize, 10)
-        // console.log(charsToDisplay)
         this.setState({ charactersRandomizedFromApi: charsToDisplay })
       }
       );
@@ -103,7 +97,7 @@ class App extends Component {
     this.state.selectedEggs.length < 3 && this.setState({ selectedEggs: [...this.state.selectedEggs, egg],  eggsRandomizedFromApi : this.state.eggsRandomizedFromApi.slice(1) })
     this.state.selectedEggs.length === 2 && this.setState({ isBattlefieldDisplayed: true, areEggsSelected: true })
     !this.state.areEggsSelected && this.setState({ selectedEggsIA: [this.state.eggsRandomizedFromApi[6],
-       this.state.eggsRandomizedFromApi[9], this.state.eggsRandomizedFromApi[12]]})
+                                    this.state.eggsRandomizedFromApi[9], this.state.eggsRandomizedFromApi[12]]})
   };
 
   selectCharacter = (character) => {
@@ -120,10 +114,12 @@ class App extends Component {
 
         {!this.state.isCharacterSelected && <Container>
           <Row>
-            {this.state.charactersRandomizedFromApi.length === 0 ? <p>loading</p> :
-              this.state.charactersRandomizedFromApi.map(
-                character => <CharacterChoice key={character.id}
-                  character={character} IAName={character} onSelectCharacter={this.selectCharacter} IAHitpoints={this.state.IAHitpoints} />)
+            {this.state.charactersRandomizedFromApi.length === 0 
+            ? <p>loading</p> 
+            : this.state.charactersRandomizedFromApi.map(
+                    character => <CharacterChoice key={character.id} character={character} 
+                                                  IAName={character} onSelectCharacter={this.selectCharacter} 
+                                                  IAHitpoints={this.state.IAHitpoints} />)
             }
           </Row>
         </Container>
@@ -132,7 +128,9 @@ class App extends Component {
           <Row>
             {this.state.eggsRandomizedFromApi.length === 0 
             ? <p>loading</p> 
-            : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg key={egg.id} egg={egg} areEggsSelected={this.state.selectedEggs} onSelectEgg={this.selectEgg} />)
+            : this.state.eggsRandomizedFromApi.map(egg => <DisplayEgg key={egg.id} egg={egg} 
+                                                                      areEggsSelected={this.state.selectedEggs} 
+                                                                      onSelectEgg={this.selectEgg} />)
             }
           </Row>
         </Container>
@@ -145,7 +143,10 @@ class App extends Component {
               <div className="user1 d-flex align-items-center bg-dark">
                 {this.state.charactersRandomizedFromApi.length === 0 
                   ? <p>Wait</p>
-                  : <Ia selectedEggs={this.state.selectedEggs} hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} />} </div></Col>
+                  : <Ia selectedEggs={this.state.selectedEggs} hitMethod={() => this.throwEggsToIA()} 
+                        IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} />} 
+              </div>
+            </Col>
 
             <Col xs={2}>
               <div >
@@ -154,7 +155,10 @@ class App extends Component {
                  ? <h1 className="endMessage">Bravo {this.state.isSelectedCharacter.name} vous avez gagné !</h1>
                  : <h1 className="endMessage">Dommage {this.state.isSelectedCharacter.name} vous avez perdu !</h1> 
                  : this.state.selectedEggs.length === 0 
-                 ? <p className="noMoreEggs">No more Eggs !</p> : this.state.selectedEggs.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
+                 ? <p className="noMoreEggs">No more Eggs !</p> 
+                 : this.state.selectedEggs.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  
+              </div>
+            </Col>
             
             <Col offset={4} />
 
@@ -166,8 +170,14 @@ class App extends Component {
                   : this.state.selectedEggsIA.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
             
             <Col xs={2}>
-              <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
-                : <Ia selectedEggs={this.state.selectedEggsIA}hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.isSelectCharacterIA} />} </div></Col>
+              <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 
+                ? <p>Wait</p>
+                : <Ia selectedEggs={this.state.selectedEggsIA} 
+                      hitMethod={() => this.throwEggsToUser()} 
+                      IAHitpoints={this.state.IAHitpoints} 
+                      IAName={this.state.isSelectCharacterIA}/>}
+              </div>
+            </Col>
 
           </Row>
         </Container>
