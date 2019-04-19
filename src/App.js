@@ -140,17 +140,17 @@ class App extends Component {
             <Col xs={2}>
               <div className="user1 d-flex align-items-center bg-dark">
                 {this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
-                  : <Ia hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} />} </div></Col>
+                  : <Ia selectedEggs={this.state.selectedEggs} hitMethod={() => this.throwEggsToIA()} IAHitpoints={this.state.userHitpoints} IAName={this.state.isSelectedCharacter[0]} />} </div></Col>
             <Col xs={2}>
               <div >
-                {this.state.selectedEggs.length === 0 ? <p>No more Eggs !</p> : this.state.selectedEggs.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
+                {this.state.selectedEggs.length === 0 ? <p>No more Eggs !</p> : this.state.selectedEggs.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
             <Col offset={6} />
             <Col xs={2}>
               <div >
-                {this.state.selectedEggsIA.length === 0 ? <p>No more Eggs !</p> : this.state.selectedEggsIA.map(egg => <DisplayEgg egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
+                {this.state.selectedEggsIA.length === 0 ? <p>No more Eggs !</p> : this.state.selectedEggsIA.map(egg => <DisplayEgg key={egg.id} egg={egg} onSelectEgg={console.log("coucou")} />)}  </div></Col>
             <Col xs={2}>
               <div className="user2 d-flex align-items-center bg-dark">{this.state.charactersRandomizedFromApi.length === 0 ? <p>Wait</p>
-                : <Ia hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.isSelectCharacterIA} />} </div></Col>
+                : <Ia selectedEggs={this.state.selectedEggsIA}hitMethod={() => this.throwEggsToUser()} IAHitpoints={this.state.IAHitpoints} IAName={this.state.isSelectCharacterIA} />} </div></Col>
 
           </Row>
         </Container>
