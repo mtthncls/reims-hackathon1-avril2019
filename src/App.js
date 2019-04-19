@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DisplayEgg from "./DisplayEgg";
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col} from 'reactstrap';
 import './App.css';
 import Ia from './Components/Ia';
 import CharacterChoice from './Components/CharacterChoice';
@@ -157,7 +157,7 @@ class App extends Component {
               <div>
                 { this.state.selectedEggs.length === 0 && this.state.selectedEggsIA.length === 0
                  ? this.state.userHitpoints > this.state.IAHitpoints 
-                 ? <h1 className="endMessageWin">Well Done {this.state.isSelectedCharacter.name} Omagad You Good BrO !</h1>
+                 ? <h1 className="endMessageWin">WELL DONE {this.state.isSelectedCharacter.name} Omagad You Good BrO !</h1>
                  : <h1 className="endMessageLose">HAHAHA {this.state.isSelectedCharacter.name} Try again loser !</h1> 
                  : this.state.selectedEggs.length === 0 
                  ? <p className="noMoreEggs"></p> 
