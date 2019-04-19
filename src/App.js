@@ -153,13 +153,13 @@ class App extends Component {
             </Col>
 
             <Col xs={2}>
-              <div >
+              <div>
                 { this.state.selectedEggs.length === 0 && this.state.selectedEggsIA.length === 0
                  ? this.state.userHitpoints > this.state.IAHitpoints 
-                 ? <h1 className="endMessage">Bravo {this.state.isSelectedCharacter.name} vous avez gagné !</h1>
-                 : <h1 className="endMessage">Dommage {this.state.isSelectedCharacter.name} vous avez perdu !</h1> 
+                 ? <h1 className="endMessageWin">Well Done {this.state.isSelectedCharacter.name} Omagad You Good BrO !</h1>
+                 : <h1 className="endMessageLose">HAHAHA {this.state.isSelectedCharacter.name} Try again loser !</h1> 
                  : this.state.selectedEggs.length === 0 
-                 ? <p className="noMoreEggs">No more Eggs !</p> 
+                 ? <p className="noMoreEggsUser">No more Eggs !</p> 
                  : this.state.selectedEggs.map(egg => <DisplayEgg key={egg.id} egg={egg}/>)}  
               </div>
             </Col>
@@ -167,10 +167,10 @@ class App extends Component {
             <Col offset={4} />
 
             <Col xs={2}>
-              <div>{this.state.selectedEggs.length === 0 && this.state.selectedEggsIA.length === 0
+              <div className = "omagad">{this.state.selectedEggs.length === 0 && this.state.selectedEggsIA.length === 0
                   ? <p>Nice</p> 
                   : this.state.selectedEggsIA.length === 0 
-                  ? <p className="noMoreEggs">No more Eggs !</p> 
+                  ? <p className="noMoreEggsIa">No more Eggs !</p> 
                   : this.state.selectedEggsIA.map(egg => <DisplayEgg key={egg.id} egg={egg}/>)}  </div></Col>
             
             <Col xs={2}>

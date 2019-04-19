@@ -9,17 +9,30 @@
   background-position: center;
 }
 
-.endMessage{
-  color : black;
-  font-size: 5rem;
+.endMessageWin{
+  display: table;
+  position: relative;
+  margin: 40px auto 0;
+  width: 500px;
+  background-color: green;
+  color: #fff;
+  transition: all 0.2s ease;
+  border-radius: 1rem;
 }
 
-.noMoreEggs{
-  color: rgb(255, 0, 0);
-  font-size : 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content : center;
+.endMessageLose{
+  display: table;
+  position: relative;
+  margin: 40px auto 0;
+  width: 500px;
+  background-color: red;
+  color: #fff;
+  transition: all 0.2s ease;
+  border-radius: 1rem;
+}
+
+.omagad{
+  position: relative;
 }
 
 .imgSize{
