@@ -9,11 +9,13 @@
 }
 
 .eggsTitle{
-    font-size: 0.6rem;
+    font-size: 1rem;
+    color: black;
 }
 
 .eggsText{
-    font-size: 0.6rem;
+    font-size: 1rem;
+    color: red;
 }
 
 .Row{
