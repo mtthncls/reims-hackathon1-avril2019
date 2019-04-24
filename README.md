@@ -1,4 +1,4 @@
-## Easter Egg themed hackathon - April 2019 - Wild Code School Reims - Javascript
+## Easter Egg themed hackathon - 18tth and 19th of April 2019 - Wild Code School Reims - Javascript
 
 This omelette was made with love and a lot of junk food by :
 + [Axel Chandelier](https://github.com/spartakyste)
