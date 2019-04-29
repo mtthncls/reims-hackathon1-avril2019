@@ -11,9 +11,14 @@ This omelette was made with love and a lot of junk food by :
 + [Matthieu Nicolas](https://github.com/mtthncls)
 + [Grégoire Suray](https://github.com/dezedene)
 
-You can see the result on Netlify here :
+You can :
++ choose a character
++ choose 3 eggs as weapons
++ throw you eggs at your opponent
++ smile or cry
++ try your luck again
 
-## https://vigilant-torvalds-a79cc5.netlify.com/
+Feedbacks and remarks are more than welcome (please do not forget we started to code less than 2 months ago ;) )
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
