@@ -31,7 +31,7 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    fetch('https://easteregg.wildcodeschool.fr/api/eggs')
+    fetch('https://tours.wilders.dev/api/eggs')
       .then(eggsFromAPI => eggsFromAPI.json())
       .then(eggsData => {
         let eggsToRandomize = this.randomizeAPIDisplay(eggsData);
@@ -41,7 +41,7 @@ class App extends Component {
       }
       );
 
-    fetch('https://easteregg.wildcodeschool.fr/api/characters')
+    fetch('https://tours.wilders.dev/api/characters')
       .then(charsFromAPI => charsFromAPI.json())
       .then(charsData => {
         let charsToRandomize = this.randomizeAPIDisplay(charsData);
